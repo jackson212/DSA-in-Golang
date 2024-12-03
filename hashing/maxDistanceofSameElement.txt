@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// Your input array
+	arr := []int{1, 1, 2, 2, 2, 1}
+	
+	// Creating a map to store the last occurrence index of each number
+	hm := make(map[int]int)
+	ans := 0
+
+	// Loop through the array
+	for i := 0; i < len(arr); i++ {
+		if val, exists := hm[arr[i]]; exists {
+			// Calculate the distance between the current index and the previous occurrence
+			ans = max(ans, i-val)
+		} else {
+			// Store the index of the first occurrence
+			hm[arr[i]] = i
+		}
+	}
+
+	// Print the result
+	fmt.Println(ans)
+}
